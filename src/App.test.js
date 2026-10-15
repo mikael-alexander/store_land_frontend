@@ -1,11 +1,51 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 import App from './App';
 
 beforeEach(() => {
   window.history.pushState({}, '', '/');
 });
 
+test('renders the home page, product carousel, and no more than ten promotions', () => {
+  render(<App />);
+
+  expect(
+    screen.getByRole('heading', { name: 'Encontre algo que combina com você.' })
+  ).toBeInTheDocument();
+  expect(
+    screen.getByRole('region', { name: 'Carrossel de produtos' })
+  ).toBeInTheDocument();
+  expect(screen.getByRole('link', { name: 'Ver todas as ofertas' })).toHaveAttribute(
+    'href',
+    '/promocoes'
+  );
+  expect(
+    screen.getByRole('link', { name: 'Store Land - página inicial' })
+  ).toHaveAttribute('href', '/');
+
+  const promotions = screen.getByRole('region', {
+    name: 'Produtos em promoção',
+  });
+  expect(within(promotions).getAllByText(/-\d+%/)).toHaveLength(8);
+});
+
+test('adds a product to the cart and displays its total', () => {
+  render(<App />);
+  fireEvent.click(
+    screen.getAllByRole('button', { name: 'Adicionar ao carrinho' })[0]
+  );
+  fireEvent.click(
+    screen.getByRole('link', { name: 'Carrinho de compras, 1 itens' })
+  );
+
+  expect(
+    screen.getByRole('heading', { name: 'Carrinho de compras' })
+  ).toBeInTheDocument();
+  expect(screen.getByText('Cafeteira Compacta')).toBeInTheDocument();
+  expect(screen.getAllByText('R$ 149,90')).toHaveLength(3);
+});
+
 test('renders the sign-in form', () => {
+  window.history.pushState({}, '', '/login');
   render(<App />);
 
   expect(
@@ -17,6 +57,7 @@ test('renders the sign-in form', () => {
 });
 
 test('navigates to the forgot-password route', () => {
+  window.history.pushState({}, '', '/login');
   render(<App />);
   fireEvent.click(screen.getByRole('link', { name: 'Esqueceu a senha?' }));
 
@@ -41,6 +82,7 @@ test('opens the reset-password page and requires a token', () => {
 });
 
 test('navigates to the registration route', () => {
+  window.history.pushState({}, '', '/login');
   render(<App />);
   fireEvent.click(screen.getByRole('link', { name: 'Cadastre-se' }));
 
@@ -53,6 +95,7 @@ test('navigates to the registration route', () => {
 });
 
 test('does not submit sign-up when passwords do not match', () => {
+  window.history.pushState({}, '', '/login');
   render(<App />);
   fireEvent.click(screen.getByRole('link', { name: 'Cadastre-se' }));
   fireEvent.change(screen.getByLabelText('Nome completo'), {

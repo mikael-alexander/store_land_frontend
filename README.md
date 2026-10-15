@@ -1,7 +1,8 @@
 # Store Land — Frontend
 
-Aplicação web do Store Land, construída com React e Create React App. Atualmente
-inclui as telas de login, cadastro e recuperação/redefinição de senha.
+Aplicação web do Store Land, construída com React e Create React App. Inclui a
+vitrine demonstrativa de produtos, promoções, carrinho em memória e telas de
+login, cadastro e recuperação/redefinição de senha.
 
 ## Requisitos
 
@@ -32,10 +33,13 @@ A aplicação abre em [http://localhost:3000](http://localhost:3000).
 
 | Caminho | Tela |
 | --- | --- |
-| `/` e `/login` | Login |
+| `/` | Página inicial com carrossel e ofertas |
+| `/login` | Login |
 | `/cadastro` | Criar conta |
 | `/esqueceu-senha` | Solicitar recuperação de senha |
 | `/redefinir-senha?token=...` | Definir uma nova senha pelo link enviado por e-mail |
+| `/promocoes` | Ver produtos em promoção |
+| `/carrinho` | Ver e alterar o carrinho demonstrativo |
 
 ## Integração com o backend
 
@@ -63,7 +67,13 @@ src/
 │   ├── RegisterPage/
 │   ├── ForgotPasswordPage/
 │   ├── ResetPasswordPage/
+│   ├── HomePage/
+│   ├── PromotionsPage/
+│   ├── CartPage/
 │   └── AuthPages.module.css
+├── components/
+├── context/
+├── data/
 ├── services/
 │   └── authApi.js
 ├── App.js
