@@ -1,70 +1,83 @@
-# Getting Started with Create React App
+# Store Land — Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Aplicação web do Store Land, construída com React e Create React App. Atualmente
+inclui as telas de login, cadastro e recuperação/redefinição de senha.
 
-## Available Scripts
+## Requisitos
 
-In the project directory, you can run:
+- Node.js e npm.
+- Backend Spring Boot disponível em `http://localhost:8080` para usar os
+  formulários de autenticação.
 
-### `npm start`
+## Instalação e execução
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+No terminal, entre nesta pasta (`frontend/store_land`) e execute:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+npm ci
+npm start
+```
 
-### `npm test`
+A aplicação abre em [http://localhost:3000](http://localhost:3000).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Scripts
 
-### `npm run build`
+| Comando | Descrição |
+| --- | --- |
+| `npm start` | Inicia o servidor de desenvolvimento. |
+| `npm test -- --watchAll=false --runInBand` | Executa os testes uma vez. |
+| `npm run build` | Gera os arquivos otimizados em `build/`. |
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Rotas
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+| Caminho | Tela |
+| --- | --- |
+| `/` e `/login` | Login |
+| `/cadastro` | Criar conta |
+| `/esqueceu-senha` | Solicitar recuperação de senha |
+| `/redefinir-senha?token=...` | Definir uma nova senha pelo link enviado por e-mail |
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Integração com o backend
 
-### `npm run eject`
+Por padrão, as chamadas de API usam `http://localhost:8080`. Para mudar o
+endereço, crie `.env.local` nesta pasta:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```dotenv
+REACT_APP_API_URL=http://localhost:8080
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Reinicie `npm start` depois de alterar essa variável. O frontend inclui cookies
+nas requisições e obtém um token CSRF de `GET /api/auth/csrf` antes de cada
+requisição `POST`.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Para permitir autenticação, mantenha o backend configurado com a origem do
+frontend (`FRONTEND_URL=http://localhost:3000` por padrão). Os dois serviços
+precisam estar acessíveis pelo navegador.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Estrutura principal
 
-## Learn More
+```text
+src/
+├── pages/
+│   ├── LoginPage/
+│   ├── RegisterPage/
+│   ├── ForgotPasswordPage/
+│   ├── ResetPasswordPage/
+│   └── AuthPages.module.css
+├── services/
+│   └── authApi.js
+├── App.js
+└── App.test.js
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Os estilos das páginas de autenticação usam CSS Modules. As chamadas HTTP e o
+tratamento das respostas da API ficam em `src/services/authApi.js`.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Observações
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- O backend valida os dados novamente; validações do navegador não substituem
+  validação no servidor.
+- O envio real de e-mail para recuperação depende da configuração SMTP no
+  backend.
+- Não coloque senhas, tokens privados ou credenciais em variáveis `REACT_APP_*`:
+  essas variáveis são incluídas no bundle público do navegador.
