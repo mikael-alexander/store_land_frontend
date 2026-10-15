@@ -3,6 +3,8 @@ import App from './App';
 
 beforeEach(() => {
   window.history.pushState({}, '', '/');
+  window.localStorage.removeItem('store-land-theme');
+  delete document.documentElement.dataset.theme;
 });
 
 test('renders the home page, product carousel, and no more than ten promotions', () => {
@@ -42,6 +44,24 @@ test('adds a product to the cart and displays its total', () => {
   ).toBeInTheDocument();
   expect(screen.getByText('Cafeteira Compacta')).toBeInTheDocument();
   expect(screen.getAllByText('R$ 149,90')).toHaveLength(3);
+});
+
+test('toggles and persists the color theme', () => {
+  render(<App />);
+  const themeButton = screen.getByRole('button', { name: 'Ativar modo escuro' });
+
+  fireEvent.click(themeButton);
+
+  expect(document.documentElement).toHaveAttribute('data-theme', 'dark');
+  expect(window.localStorage.getItem('store-land-theme')).toBe('dark');
+  expect(
+    screen.getByRole('button', { name: 'Ativar modo claro' })
+  ).toHaveAttribute('aria-pressed', 'true');
+
+  fireEvent.click(screen.getByRole('button', { name: 'Ativar modo claro' }));
+
+  expect(document.documentElement).toHaveAttribute('data-theme', 'light');
+  expect(window.localStorage.getItem('store-land-theme')).toBe('light');
 });
 
 test('renders the sign-in form', () => {

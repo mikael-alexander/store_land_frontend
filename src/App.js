@@ -7,23 +7,26 @@ import PromotionsPage from './pages/PromotionsPage/PromotionsPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
 import ResetPasswordPage from './pages/ResetPasswordPage/ResetPasswordPage';
 import { CartProvider } from './context/CartContext';
+import { ThemeProvider } from './context/ThemeContext';
 
 function App() {
   return (
-    <CartProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/cadastro" element={<RegisterPage />} />
-          <Route path="/esqueceu-senha" element={<ForgotPasswordPage />} />
-          <Route path="/redefinir-senha" element={<ResetPasswordPage />} />
-          <Route path="/promocoes" element={<PromotionsPage />} />
-          <Route path="/carrinho" element={<CartPage />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </BrowserRouter>
-    </CartProvider>
+    <ThemeProvider>
+      <CartProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/cadastro" element={<RegisterPage />} />
+            <Route path="/esqueceu-senha" element={<ForgotPasswordPage />} />
+            <Route path="/redefinir-senha" element={<ResetPasswordPage />} />
+            <Route path="/promocoes" element={<PromotionsPage />} />
+            <Route path="/carrinho" element={<CartPage />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </BrowserRouter>
+      </CartProvider>
+    </ThemeProvider>
   );
 }
 

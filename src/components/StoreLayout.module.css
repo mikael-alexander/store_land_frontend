@@ -194,3 +194,43 @@
     padding: 9px;
   }
 }
+
+:global(html[data-theme='dark']) .store {
+  background: #171923;
+  color: #eff0f7;
+}
+
+:global(html[data-theme='dark']) .header {
+  background: rgb(30 33 45 / 96%);
+  border-bottom-color: #303446;
+}
+
+:global(html[data-theme='dark']) .brand,
+:global(html[data-theme='dark']) .cartLink,
+:global(html[data-theme='dark']) .footerBrand {
+  color: #f0f1f8;
+}
+
+:global(html[data-theme='dark']) .navLink,
+:global(html[data-theme='dark']) .loginLink {
+  color: #b4b8c9;
+}
+
+:global(html[data-theme='dark']) .navLink:hover,
+:global(html[data-theme='dark']) .loginLink:hover {
+  color: #aeb3ff;
+}
+
+:global(html[data-theme='dark']) .cartCount {
+  border-color: #1e212d;
+}
+
+:global(html[data-theme='dark']) .footer {
+  border-top-color: #303446;
+  color: #9da2b4;
+}
+
+:global(html[data-theme='dark']) .brandAccent,
+:global(html[data-theme='dark']) .footerBrand span {
+  color: #aeb3ff;
+}

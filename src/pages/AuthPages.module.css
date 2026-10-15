@@ -199,3 +199,88 @@
     padding: 30px 24px;
   }
 }
+
+.authBrandRow {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+:global(html[data-theme='dark']) .authPage {
+  background:
+    radial-gradient(ellipse at 15% 15%, rgb(78 91 220 / 16%), transparent 35%),
+    #171923;
+  color: #eff0f7;
+}
+
+:global(html[data-theme='dark']) .authCard {
+  background: #222532;
+  border-color: #383c4f;
+  box-shadow: 0 24px 70px rgb(0 0 0 / 28%);
+}
+
+:global(html[data-theme='dark']) .authBrand,
+:global(html[data-theme='dark']) .authHeading h1 {
+  color: #eff0f7;
+}
+
+:global(html[data-theme='dark']) .authEyebrow {
+  color: #aeb3ff;
+}
+
+:global(html[data-theme='dark']) .authDescription,
+:global(html[data-theme='dark']) .authSwitch {
+  color: #b3b7c7;
+}
+
+:global(html[data-theme='dark']) .authField label {
+  color: #e0e2ec;
+}
+
+:global(html[data-theme='dark']) .authField input {
+  background: #191c27;
+  border-color: #41465a;
+  color: #eff0f7;
+}
+
+:global(html[data-theme='dark']) .authField input::placeholder {
+  color: #8f94a7;
+}
+
+:global(html[data-theme='dark']) .authField input:focus {
+  border-color: #858bff;
+  box-shadow: 0 0 0 3px rgb(130 137 255 / 18%);
+}
+
+:global(html[data-theme='dark']) .authRemember {
+  color: #b3b7c7;
+}
+
+:global(html[data-theme='dark']) .authTextButton {
+  color: #b4b8ff;
+}
+
+:global(html[data-theme='dark']) .authTextButton:hover {
+  color: #d1d3ff;
+}
+
+:global(html[data-theme='dark']) .authSubmit {
+  background: #5961f0;
+}
+
+:global(html[data-theme='dark']) .authSubmit:hover {
+  background: #6c73ff;
+}
+
+:global(html[data-theme='dark']) .authSwitch {
+  border-top-color: #383c4f;
+}
+
+:global(html[data-theme='dark']) .authMessage {
+  background: #303653;
+  color: #d2d5ff;
+}
+
+:global(html[data-theme='dark']) .authFooter {
+  color: #a1a6b7;
+}

@@ -531,3 +531,91 @@
     width: 56px;
   }
 }
+
+:global(html[data-theme='dark']) .pageTitle,
+:global(html[data-theme='dark']) .carouselHeader h2,
+:global(html[data-theme='dark']) .sectionHeading h2,
+:global(html[data-theme='dark']) .productInfo h3,
+:global(html[data-theme='dark']) .priceRow strong,
+:global(html[data-theme='dark']) .cartItem h3,
+:global(html[data-theme='dark']) .cartItemTotal strong,
+:global(html[data-theme='dark']) .summary h2,
+:global(html[data-theme='dark']) .summaryTotal,
+:global(html[data-theme='dark']) .emptyState h2 {
+  color: #eff0f7;
+}
+
+:global(html[data-theme='dark']) .subheading,
+:global(html[data-theme='dark']) .productCategory,
+:global(html[data-theme='dark']) .sectionHeading p,
+:global(html[data-theme='dark']) .cartItem p,
+:global(html[data-theme='dark']) .summaryLine,
+:global(html[data-theme='dark']) .emptyState {
+  color: #aeb2c2;
+}
+
+:global(html[data-theme='dark']) .carouselShell {
+  background: linear-gradient(115deg, #272a3d, #302a3b 55%, #382b31);
+  border-color: #3b3c50;
+}
+
+:global(html[data-theme='dark']) .carouselButton,
+:global(html[data-theme='dark']) .viewAllButton,
+:global(html[data-theme='dark']) .productCard,
+:global(html[data-theme='dark']) .cartItem,
+:global(html[data-theme='dark']) .summary,
+:global(html[data-theme='dark']) .emptyState {
+  background-color: #222532;
+  border-color: #383c4f;
+}
+
+:global(html[data-theme='dark']) .carouselButton {
+  color: #e5e6ef;
+}
+
+:global(html[data-theme='dark']) .carouselButton:hover {
+  background: #5058e8;
+  color: #fff;
+}
+
+:global(html[data-theme='dark']) .priceRow del {
+  color: #a0a4b5;
+}
+
+:global(html[data-theme='dark']) .addButton {
+  background: #343852;
+  color: #c4c7ff;
+}
+
+:global(html[data-theme='dark']) .addButton:hover {
+  background: #5058e8;
+  color: #fff;
+}
+
+:global(html[data-theme='dark']) .textLink,
+:global(html[data-theme='dark']) .viewAllButton {
+  color: #b4b8ff;
+}
+
+:global(html[data-theme='dark']) .viewAllButton:hover {
+  background: #5058e8;
+  color: #fff;
+}
+
+:global(html[data-theme='dark']) .catalogNote {
+  background: #292d40;
+  color: #c0c4dd;
+}
+
+:global(html[data-theme='dark']) .quantityControls button {
+  background: #383c50;
+  color: #e5e6ef;
+}
+
+:global(html[data-theme='dark']) .removeButton {
+  color: #b0b3c0;
+}
+
+:global(html[data-theme='dark']) .summaryTotal {
+  border-top-color: #383c4f;
+}

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { resetPassword } from '../../services/authApi';
+import ThemeToggle from '../../components/ThemeToggle';
 import styles from '../AuthPages.module.css';
 
 function ResetPasswordPage() {
@@ -35,9 +36,12 @@ function ResetPasswordPage() {
   return (
     <main className={styles.authPage}>
       <section className={styles.authCard} aria-labelledby="auth-title">
-        <div className={styles.authBrand} aria-label="Store Land">
-          <span className={styles.authBrandMark} aria-hidden="true">S</span>
-          <span>Store Land</span>
+        <div className={styles.authBrandRow}>
+          <div className={styles.authBrand} aria-label="Store Land">
+            <span className={styles.authBrandMark} aria-hidden="true">S</span>
+            <span>Store Land</span>
+          </div>
+          <ThemeToggle />
         </div>
 
         <div className={styles.authHeading}>

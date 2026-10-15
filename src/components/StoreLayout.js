@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import ThemeToggle from './ThemeToggle';
 import styles from './StoreLayout.module.css';
 
 function StoreLayout({ children }) {
@@ -26,6 +27,7 @@ function StoreLayout({ children }) {
           <div className={styles.actions}>
             <Link className={styles.loginLink} to="/login">Entrar</Link>
             <Link className={styles.signupLink} to="/cadastro">Criar conta</Link>
+            <ThemeToggle />
             <Link
               aria-label={`Carrinho de compras, ${itemCount} itens`}
               className={styles.cartLink}
